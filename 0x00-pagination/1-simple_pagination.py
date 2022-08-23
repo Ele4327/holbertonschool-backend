@@ -1,10 +1,16 @@
 import csv
 import math
+
+
+""" Simple Pagination"""
+
 from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple:
-    return((page - 1) * page_size, page * page_size)
+    """ Return a tuple """
+    return ((page - 1) * page_size, page * page_size)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -26,7 +32,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        assert(isinstance(page, int) and isinstance(page_size, int))
-        assert(page > 0 and page_size > 0)
+        """ Get a page of popular baby names."""
+        assert (isinstance(page, int) and isinstance(page_size, int))
+        assert (page > 0 and page_size > 0)
         [start, end] = index_range(page, page_size)
         return self.dataset()[start: end]

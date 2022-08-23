@@ -1,10 +1,19 @@
+#!/usr/bin/env python3
+
+"""
+Implement a method that takes the same arguments
+(and defaults) as -get_page- and returns a dictionary
+"""
+
 import csv
 import math
 from typing import List, Tuple, Dict
 
 
 def index_range(page: int, page_size: int) -> Tuple:
-    return((page - 1) * page_size, page * page_size)
+    """ Return a tuple """
+    return ((page - 1) * page_size, page * page_size)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -26,12 +35,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        assert(isinstance(page, int) and isinstance(page_size, int))
-        assert(page > 0 and page_size > 0)
+        """ Get a page of popular baby names."""
+        assert (isinstance(page, int) and isinstance(page_size, int))
+        assert (page > 0 and page_size > 0)
         [start, end] = index_range(page, page_size)
         return self.dataset()[start: end]
 
     def get_hyper(self, page: int, page_size: int) -> Dict:
+        """ Get a hyper-parameter for a baby name."""
 
         reg_dataset = self.get_page(page, page_size)
 
@@ -41,7 +52,8 @@ class Server:
             'page_size': len(reg_dataset),
             'page': page,
             'data': reg_dataset,
-            'next_page': page + 1 if (page + 1) <= tot_pages_in_dataset else None,
+            'next_page': page + 1 if (page + 1) <=
+            tot_pages_in_dataset else None,
             'prev_page': page - 1 if (page - 1) > 0 else None,
             'total_pages': tot_pages_in_dataset
         }

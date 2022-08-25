@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 
 """
-Create a class that inherits and is
-a caching system:
+    Create a class that inherits and is
+    a caching system:
 """
 
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """ BasicCache inherits from BaseCaching. """
+    """ FIFOCache class inherits from BaseCaching. """
     def __init__(self):
         super().__init__()
 

@@ -2,14 +2,13 @@
 """
     Create a class that inherits and is
     a caching system:
-
 """
 
 from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """ BasicCache inherits from BaseCaching. """
+    """ LRUCache class inherits from BaseCaching. """
     def __init__(self):
         super().__init__()
 
@@ -37,6 +36,7 @@ class LRUCache(BaseCaching):
             Must return the value linked to key.
         """
         item = self.cache_data.get(key)
+
         if key is None or key not in self.cache_data:
             return None
         if item:

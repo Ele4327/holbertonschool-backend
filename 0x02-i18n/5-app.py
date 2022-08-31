@@ -50,12 +50,10 @@ def get_locale() -> str:
         Use request.accept_languages to determine
         the best match with our supported languages.
     """
-    if request.args.get('locale'):
-        locale = request.args.get('locale')
-        if locale in app.config['LANGUAGES']:
-            return locale
-    else:
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    locale = request.args.get("locale")
+    if locale:
+        return locale
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 def get_user() -> Union[dict, None]:
     """

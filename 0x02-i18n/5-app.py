@@ -62,11 +62,10 @@ def get_user() -> Union[dict, None]:
         Returns a user dictionary, or none if the ID cannot be found,
         or if login_as was not passed.
     """
-    login_as = request.args.get("login_as")
-    if login_as:
+    if request.args.get('login_as'):
         user = int(request.args.get('login_as'))
         if user in users:
-            return user.get(user)
+            return users.get(user)
     else:
         return None
 

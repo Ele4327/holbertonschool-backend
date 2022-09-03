@@ -58,6 +58,7 @@ def get_locale() -> str:
     else:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+
 def get_user() -> Union[dict, None]:
     """
         Returns a user dictionary, or none if the ID cannot be found,
@@ -70,6 +71,7 @@ def get_user() -> Union[dict, None]:
     else:
         return None
 
+
 @app.before_request
 def before_request():
     """
@@ -77,6 +79,7 @@ def before_request():
         and set it as a global on flask.g.user
     """
     g.user = get_user()
+
 
 if __name__ == "__main__":
     app.run(debug=True)

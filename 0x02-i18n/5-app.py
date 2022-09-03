@@ -6,6 +6,7 @@
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 from typing import Union
+from os import getenv
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -61,12 +62,13 @@ def get_user() -> Union[dict, None]:
         Returns a user dictionary, or none if the ID cannot be found,
         or if login_as was not passed.
     """
-    login_as = request.args.get("login_as", False)
+    login_as = request.args.get("login_as")
     if login_as:
-        user = users.get(int(login_as), False)
-        if user:
-            return user
-    return None
+        user = int(request.args.get('login_as'))
+        if user in users:
+            return user.get(user)
+    else:
+        return None
 
 @app.before_request
 def before_request():
